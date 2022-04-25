@@ -53,9 +53,9 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:width="120dp"
             android:layout_marginStart="48dp"
             android:layout_marginTop="120dp"
+            android:width="120dp"
             android:hint="Qty"
             android:textColorHint="@android:color/holo_red_dark"
             app:counterEnabled="true"
@@ -67,11 +67,11 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/qty"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/design_default_color_secondary_variant"
                 android:hint="Qty"
+                android:inputType="number"
+                android:textColor="@color/design_default_color_secondary_variant"
                 tools:layout_editor_absoluteX="91dp"
                 tools:layout_editor_absoluteY="256dp" />
 
@@ -84,23 +84,58 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
             android:layout_marginTop="28dp"
-            android:textSize="16dp"
             android:text="Total: "
             android:textColor="@android:color/black"
+            android:textSize="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/til_qty" />
 
         <TextView
-            android:id="@+id/Total"
+            android:id="@+id/tvStok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="72dp"
+            android:text="Sisa stok: "
+            android:textColor="@android:color/black"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_qty" />
+
+        <TextView
+            android:id="@+id/total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="108dp"
             android:layout_marginTop="28dp"
             android:text="xxxxxx"
-            android:textSize="16dp"
             android:textColor="@android:color/black"
+            android:textSize="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/til_qty" />
+
+        <TextView
+            android:id="@+id/Stok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="132dp"
+            android:layout_marginTop="72dp"
+            android:text="xxxxxx"
+            android:textColor="@android:color/black"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_qty" />
+
+        <EditText
+            android:id="@+id/txt_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="27dp"
+            android:inputType="number"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
