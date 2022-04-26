@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -23,6 +23,7 @@
             android:layout_marginStart="48dp"
             android:layout_marginTop="32dp"
             android:hint="Harga"
+            app:hintTextColor="@color/material_dynamic_neutral0"
             android:maxWidth="120dp"
             android:textColorHint="@android:color/holo_red_dark"
             app:counterEnabled="true"
@@ -41,7 +42,7 @@
                 android:maxLines="16"
                 android:padding="16dp"
                 android:textColor="@color/design_default_color_secondary_variant"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -86,7 +87,31 @@
             android:layout_marginTop="28dp"
             android:text="Total: "
             android:textColor="@android:color/black"
-            android:textSize="16dp"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_qty" />
+
+        <TextView
+            android:id="@+id/tvHarga"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="152dp"
+            android:text="Harga: "
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_qty" />
+
+        <TextView
+            android:id="@+id/tvHarga2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="196dp"
+            android:text="Qty: "
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/til_qty" />
 
@@ -98,7 +123,7 @@
             android:layout_marginTop="72dp"
             android:text="Sisa stok: "
             android:textColor="@android:color/black"
-            android:textSize="16dp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/til_qty" />
 
@@ -110,7 +135,7 @@
             android:layout_marginTop="28dp"
             android:text="xxxxxx"
             android:textColor="@android:color/black"
-            android:textSize="16dp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/til_qty" />
 
@@ -122,17 +147,35 @@
             android:layout_marginTop="72dp"
             android:text="xxxxxx"
             android:textColor="@android:color/black"
-            android:textSize="16dp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/til_qty" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txt_number"
-            android:layout_width="match_parent"
+            android:layout_width="135dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="27dp"
+            android:layout_marginStart="136dp"
+            android:layout_marginBottom="352dp"
+            android:hint="Harga"
             android:inputType="number"
+            android:lines="1"
+            android:maxLength="13"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_Qty"
+            android:layout_width="100dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="136dp"
+            android:layout_marginBottom="308dp"
+            android:background="#BAB7B7"
+            android:hint="Required"
+            android:inputType="number"
+            android:lines="1"
+            android:maxLength="13"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

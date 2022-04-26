@@ -1,6 +1,7 @@
 package example.com
 
 import academy.learnprogramming.models.Barang
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -8,6 +9,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import example.com.utils.ValidNumber
 import java.lang.NumberFormatException
 import java.text.DecimalFormat
@@ -68,6 +70,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
+            @RequiresApi(Build.VERSION_CODES.Q)
             override fun afterTextChanged(p0: Editable?) {
                 textView!!.removeTextChangedListener(this)
                 try{
@@ -83,7 +86,8 @@ class MainActivity : AppCompatActivity() {
                     //editText!!.setText(formattedString)
                     //editText!!.setSelection(editText!!.text.length)
                     textView!!.setText(formattedString)
-                    textView!!.selectionEnd
+                    //textView!!.selectionEnd
+                    //textView!!.setTextSelectHandleRight(textView!!.text.length)
 
                 } catch (nfe: NumberFormatException) {
                 nfe.printStackTrace()
