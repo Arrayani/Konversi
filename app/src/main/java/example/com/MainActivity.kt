@@ -46,27 +46,67 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<TextView>(R.id.qty).text = "1"
 
-        var hJualListener = findViewById<TextView>(R.id.hargajual)
+        //var hJualListener = findViewById<TextView>(R.id.hargajual)
         //hJualListener.addTextChangedListener(onTextChangedListener())
-        editText =findViewById<View>(R.id.txt_number) as EditText
 
+        textView = findViewById<View>(R.id.hargajual) as TextView
+        textView!!.addTextChangedListener(txtChangedListener())
+
+        editText =findViewById<View>(R.id.txt_number) as EditText
         editText!!.addTextChangedListener(onTextChangedListener())
+        editText!!.append(afterHjual)
+
+    }
+
+    private fun txtChangedListener(): TextWatcher? {
+        return object :TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                textView!!.removeTextChangedListener(this)
+                try{
+                    var originalString = p0.toString()
+                    if (originalString.contains(".")) {
+                        originalString = originalString.replace(".", "")
+                    }
+                    val longval : Long = originalString.toLong()
+                    val formatter = NumberFormat.getInstance(Locale("in","ID")) as DecimalFormat
+                    formatter.applyPattern("#,###,###,###")
+                    val formattedString = formatter.format(longval)
+
+                    //editText!!.setText(formattedString)
+                    //editText!!.setSelection(editText!!.text.length)
+                    textView!!.setText(formattedString)
+                    textView!!.selectionEnd
+
+                } catch (nfe: NumberFormatException) {
+                nfe.printStackTrace()
+            }
+            }
+
+        }
 
     }
 
 
-
-        private fun onTextChangedListener(): TextWatcher {
+    private fun onTextChangedListener(): TextWatcher {
             return object : TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {}
                 override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
                 override fun afterTextChanged(s: Editable?) {
                      editText!!.removeTextChangedListener(this)
+                    //textView!!.removeTextChangedListener(this)
                     try{
                         var originalString = s.toString()
-                        if (originalString.contains(",")) {
-                            originalString = originalString.replace(",".toRegex(), "")
+                        if (originalString.contains(".")) {
+                            originalString = originalString.replace(".", "")
                              }
 
 //                        val konversiLong = originalString.toLong()
@@ -75,16 +115,23 @@ class MainActivity : AppCompatActivity() {
                         //editText!!.setText(hasilDeci)
 
                         val longval : Long = originalString.toLong()
-                        val formatter = NumberFormat.getInstance(Locale.US) as DecimalFormat
+                        val formatter = NumberFormat.getInstance(Locale("in","ID")) as DecimalFormat
                         formatter.applyPattern("#,###,###,###")
                         val formattedString = formatter.format(longval)
-                        editText!!.setText(formattedString)
+                       editText!!.setText(formattedString)
+                       editText!!.setSelection(editText!!.text.length)
+                        //val hJualListener= findViewById<TextView>(R.id.hargajual)
+                        //hJualListener.text = formattedString
+                        //textView!!.setText(formattedString)
+                        //textView!!.selectionEnd
 
-                        editText!!.setSelection(editText!!.text.length)
                     }catch (nfe: NumberFormatException) {
                         nfe.printStackTrace()
                     }
                     editText!!.addTextChangedListener(this)
+//                    val hJualListener= findViewById<TextView>(R.id.hargajual)
+//                    hJualListener.addTextChangedListener(this)
+                    //textView!!.addTextChangedListener(this)
                 }
 
             }
