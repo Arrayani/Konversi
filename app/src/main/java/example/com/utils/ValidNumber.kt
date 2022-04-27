@@ -18,4 +18,12 @@ class ValidNumber {
         val hasiDeci = dcFormat.format(konversiLong).toString().replace(',','.')
         return hasiDeci
     }
+
+    fun removedot( terimaString:String):String{
+        if (terimaString.contains(".")){
+            val newterimaString = terimaString.replace(".", "")
+            return newterimaString
+        }else
+            return terimaString
+    }
 }
