@@ -22,6 +22,7 @@ private var allInCart = ArrayList<Barang>()
 
 class MainActivity : AppCompatActivity() {
     private var editText:EditText?=null
+    private var editTextQty : EditText?=null
     private var textView:TextView?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,11 +55,17 @@ class MainActivity : AppCompatActivity() {
         textView = findViewById<View>(R.id.hargajual) as TextView
         textView!!.addTextChangedListener(txtChangedListener())
 
+        //yg berjalan dengan benar
         editText =findViewById<View>(R.id.txt_number) as EditText
         editText!!.addTextChangedListener(onTextChangedListener())
         editText!!.append(afterHjual)
 
+        editTextQty = findViewById<View>(R.id.txt_Qty) as EditText
+        editTextQty!!.addTextChangedListener(qtyChangedListener())
+        editTextQty!!.append("1")
     }
+
+    //listener start
 
     private fun txtChangedListener(): TextWatcher? {
         return object :TextWatcher{
@@ -82,23 +89,21 @@ class MainActivity : AppCompatActivity() {
                     val formatter = NumberFormat.getInstance(Locale("in","ID")) as DecimalFormat
                     formatter.applyPattern("#,###,###,###")
                     val formattedString = formatter.format(longval)
-
-                    //editText!!.setText(formattedString)
-                    //editText!!.setSelection(editText!!.text.length)
                     textView!!.setText(formattedString)
-                    //textView!!.selectionEnd
+                    //textView!!.
                     //textView!!.setTextSelectHandleRight(textView!!.text.length)
 
                 } catch (nfe: NumberFormatException) {
                 nfe.printStackTrace()
             }
+                textView!!.addTextChangedListener(this)
             }
 
         }
 
     }
 
-
+//original one
     private fun onTextChangedListener(): TextWatcher {
             return object : TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -113,17 +118,17 @@ class MainActivity : AppCompatActivity() {
                             originalString = originalString.replace(".", "")
                              }
 
-//                        val konversiLong = originalString.toLong()
-//                        val dcFormat = DecimalFormat("#,###")
-//                        val hasilDeci = dcFormat.format(konversiLong).toString().replace(',','.')
-                        //editText!!.setText(hasilDeci)
+                       // val konversiLong = originalString.toLong()
+                       //val dcFormat = DecimalFormat("#,###")
+                       // val hasilDeci = dcFormat.format(konversiLong).toString().replace(',','.')
+                       //editText!!.setText(hasilDeci)
 
                         val longval : Long = originalString.toLong()
                         val formatter = NumberFormat.getInstance(Locale("in","ID")) as DecimalFormat
                         formatter.applyPattern("#,###,###,###")
                         val formattedString = formatter.format(longval)
-                       editText!!.setText(formattedString)
-                       editText!!.setSelection(editText!!.text.length)
+                        editText!!.setText(formattedString)
+                        editText!!.setSelection(editText!!.text.length)
                         //val hJualListener= findViewById<TextView>(R.id.hargajual)
                         //hJualListener.text = formattedString
                         //textView!!.setText(formattedString)
@@ -141,6 +146,37 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+
+    private fun qtyChangedListener(): TextWatcher? {
+        return object :TextWatcher{
+            override fun beforeTextChanged(s : CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) { }
+
+            override fun afterTextChanged(s: Editable?) {
+                editTextQty!!.removeTextChangedListener(this)
+                try{
+                    var originalString = s.toString()
+                    if (originalString.contains(".")) {
+                        originalString = originalString.replace(".", "")
+                    }
+                    val longval : Long = originalString.toLong()
+                    val formatter = NumberFormat.getInstance(Locale("in","ID")) as DecimalFormat
+                    formatter.applyPattern("#,###,###,###")
+                    val formattedString = formatter.format(longval)
+                    editTextQty!!.setText(formattedString)
+                    editTextQty!!.setSelection(editTextQty!!.text.length)
+
+                } catch (nfe: NumberFormatException) {
+                    nfe.printStackTrace()
+                }
+                editTextQty!!.addTextChangedListener(this)
+            }
+
+        }
+
+    }
+
 
 
 }
